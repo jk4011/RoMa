@@ -5,7 +5,7 @@ from PIL import Image
 
 
 def get_roma(device):
-    weights = torch.load("/kaggle/input/roma/roma_outdoor.pth", map_location=device, weights_only=False)
+    weights = torch.load("/kaggle/input/roma/pytorch/1/1/roma_outdoor.pth", map_location=device, weights_only=False)
     dinov2_weights = torch.load("/kaggle/input/dinov2/pytorch/dinov2/1/dinov2_vitl14_pretrain.pth",
                                 map_location=device, weights_only=False)
     roma_model = roma_outdoor(device=device, weights=weights, dinov2_weights=dinov2_weights,
