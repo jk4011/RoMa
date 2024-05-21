@@ -4,10 +4,11 @@ from .roma_models import roma_model
 from PIL import Image
 
 
-def get_roma(device):
-    weights = torch.load("/kaggle/input/roma/pytorch/1/1/roma_outdoor.pth", map_location=device, weights_only=False)
-    dinov2_weights = torch.load("/kaggle/input/dinov2/pytorch/dinov2/1/dinov2_vitl14_pretrain.pth",
-                                map_location=device, weights_only=False)
+def get_roma(device, 
+             roma_path="/kaggle/input/roma/pytorch/1/1/roma_outdoor.pth", 
+             dino_path="/kaggle/input/dinov2-vit-pretrain/dinov2_vitl14_pretrain.pth"):
+    weights = torch.load(roma_path, map_location=device, weights_only=False)
+    dinov2_weights = torch.load(dino_path, map_location=device, weights_only=False)
     roma_model = roma_outdoor(device=device, weights=weights, dinov2_weights=dinov2_weights,
                               coarse_res=560, upsample_res=(864, 1152))
     H, W = roma_model.get_output_resolution()
